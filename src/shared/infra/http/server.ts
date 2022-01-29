@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import log from '@config/logger';
 import express from 'express';
 
 import 'express-async-errors';
+import { log } from '@config/logger';
 import { AppError } from '@shared/errors/AppError';
 
 const PORT = process.env.PORT || 3000;

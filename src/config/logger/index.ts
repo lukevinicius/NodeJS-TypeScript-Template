@@ -14,4 +14,4 @@ const log = pino({
   timestamp: () => `,"time":"${dayjs().format()}"`,
 });
 
-export default log;
+export { log };

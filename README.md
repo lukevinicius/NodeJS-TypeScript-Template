@@ -31,9 +31,10 @@
 # :rocket: Technologies
 This template was made using the follow technologies:
 
-* [Typescript](https://www.typescriptlang.org/)
-* [Node.js](https://nodejs.org/en/)
+* [Babel](https://babeljs.io/)
 * [Express](http://expressjs.com/)
+* [Node.js](https://nodejs.org/en/)
+* [Typescript](https://www.typescriptlang.org/)
 
 # :computer: How to run
 

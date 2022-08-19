@@ -4,6 +4,9 @@ module.exports = {
     "@babel/preset-typescript",
   ],
   plugins: [
+    ["inline-dotenv",{
+      path: '.env' // See motdotla/dotenv for more options
+    }],
     [
       "module-resolver",
       {

@@ -1,30 +1,28 @@
+import { AppError } from '@shared/errors/AppError';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import { inject, injectable } from 'tsyringe';
+import { injectable } from 'tsyringe';
 
-import { AppError } from '@shared/errors/AppError';
-
-import { IUsersRepository } from '../../repositories/IUsersRepository';
+import { UsersRepository } from '../../repositories/UsersRepository';
 
 interface IRequest {
-  email: string;
+  username: string;
   password: string;
 }
+
 interface IResponse {
   user: {
     name: string;
-    email: string;
+    username: string;
   };
   token: string;
 }
 
 @injectable()
-class AuthenticateUserUseCase {
-  constructor(
-    @inject('UsersRepository') private usersRepository: IUsersRepository,
-  ) {}
-  async execute({ email, password }: IRequest): Promise<IResponse> {
-    const user = await this.usersRepository.findByEmail(email);
+class AuthenticateUserService {
+  constructor(private usersRepository: UsersRepository) {}
+  async execute({ username, password }: IRequest): Promise<IResponse> {
+    const user = await this.usersRepository.findByEmail(username);
 
     if (!user) {
       throw new AppError('Email or password incorrect', 403);
@@ -45,7 +43,7 @@ class AuthenticateUserUseCase {
       token,
       user: {
         name: user.name,
-        email: user.email,
+        username: user.username,
       },
     };
 
@@ -53,4 +51,4 @@ class AuthenticateUserUseCase {
   }
 }
 
-export { AuthenticateUserUseCase };
+export { AuthenticateUserService };
